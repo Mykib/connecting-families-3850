@@ -4,11 +4,12 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import firebase from "./utils/firebase";
 import AccountButton from './components/AccountButton';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
     {/* <App /> */}
-    <AccountButton />
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

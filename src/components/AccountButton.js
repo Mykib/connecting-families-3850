@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import "./AccountButton.css";
 import firebase from "firebase";
+import { Button } from '@material-ui/core';
 
 function AccountButton(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -108,17 +110,17 @@ function AccountButton(props) {
     <div id="user-container">
       {isLoggedIn && (
         <div>
-          <div id="user-pic"><img src={pPicUrl} alt=""/></div>
+        <Button variant="contained" color="default" id="sign-out" onClick={signOut}>
+          Sign-out
+        </Button>
+          <img id="user-pic" src={pPicUrl} alt=""/>
           <div id="user-name">{userName}</div>
-          <button id="sign-out" onClick={signOut}>
-            Sign-out
-          </button>
         </div>
       )}
       {!isLoggedIn && (
-        <button id="sign-in" onClick={signIn}>
+        <Button variant="contained" color="default" id="sign-in" onClick={signIn}>
           Sign-in with Google
-        </button>
+        </Button>
       )}
     </div>
   );
