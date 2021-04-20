@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import firebase from "./utils/firebase";
-import RotatingLogo from './components/RotatingLogo';
+import AccountButton from './components/AccountButton';
+import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* <App /> */}
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );
