@@ -15,5 +15,5 @@ When branching please prefix branch names:
 - 'feature'
 - 'experimental'
 
-Master branch is for Live Deployment (Do not merge into Master)
+**Master is set-up to automatically build and deploy to the public. (Do not merge into Master without good reason)**
 Before creating a pull request, `git rebase`.
