@@ -12,20 +12,8 @@
     @include absolute-position();
 }
 
-#user-pic {
-    @include absolute-position();
-    right: auto;
-    left: 1rem;
-    width: 3rem;
-
-    border-radius: 50%;
-    border-width: 1px;
-    border-color: white;
-    border-style: solid;
-}
-
-#user-name {
+.icon-button {
     position: absolute;
-    top: 1.5rem;
-    left: 5rem;
+    top: 1rem;
+    left: 1rem;
 }
