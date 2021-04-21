@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import "./AccountButton.css";
 import firebase from "firebase";
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import IconButton from "./IconButton";
 
 function AccountButton(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -100,28 +107,63 @@ function AccountButton(props) {
       saveMessagingDeviceToken();
     } else {
       // User is signed out!
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
   };
 
   initFirebaseAuth();
-  console.log(pPicUrl)
+
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <div id="user-container">
-      {isLoggedIn && (
-        <div>
-        <Button variant="contained" color="default" id="sign-out" onClick={signOut}>
-          Sign-out
-        </Button>
-          <img id="user-pic" src={pPicUrl} alt=""/>
-          <div id="user-name">{userName}</div>
-        </div>
-      )}
-      {!isLoggedIn && (
-        <Button variant="contained" color="default" id="sign-in" onClick={signIn}>
-          Sign-in with Google
-        </Button>
-      )}
+      <div className="icon-button">
+        <IconButton />
+      </div>
+      <Button
+        variant="contained"
+        color="default"
+        id="sign-out"
+        onClick={handleClickOpen}
+      >
+        Sign-In
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            To subscribe to this website, please enter your email address here.
+            We will send updates occasionally.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Email Address"
+            type="email"
+            fullWidth
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleClose} color="primary">
+            Subscribe
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
