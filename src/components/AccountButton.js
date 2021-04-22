@@ -10,6 +10,9 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import IconButton from "./IconButton";
 
+import googleIcon from "../assets/Google__G__Logo.svg.png"
+import facebookIcon from "../assets/Facebook_icon_2013.svg"
+
 function AccountButton(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
@@ -124,9 +127,7 @@ function AccountButton(props) {
   };
   return (
     <div id="user-container">
-      <div className="icon-button">
-        <IconButton />
-      </div>
+      <div className="icon-button"></div>
       <Button
         variant="contained"
         color="default"
@@ -140,12 +141,9 @@ function AccountButton(props) {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
+        <IconButton onClick={handleClose} />
+        <DialogTitle id="form-dialog-title"><center>Sign In</center></DialogTitle>
+        <DialogContent className="dialog-content">
           <TextField
             autoFocus
             margin="dense"
@@ -154,13 +152,27 @@ function AccountButton(props) {
             type="email"
             fullWidth
           />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="password"
+            label="password"
+            type="password"
+            fullWidth
+          />
+          <Button onClick={handleClose} color="primary">
+            Don't Have an Account Yet? Click Here
+          </Button><br />
+          <Button onClick={handleClose} variant="contained" color="primary" startIcon={<img className="button-icon" src={googleIcon}/>}>
+            Sign in with Google
+          </Button><br />
+          <Button onClick={handleClose} variant="contained" color="primary" startIcon={<img className="button-icon" src={facebookIcon}/>}>
+            Sign in with Facebook
+          </Button>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
+          <Button onClick={handleClose} variant="contained"  color="primary">
+            Sign In
           </Button>
         </DialogActions>
       </Dialog>
