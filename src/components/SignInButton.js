@@ -9,6 +9,8 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 import IconButton from "./IconButton";
+import { useFormik } from "formik";
+import * as yup from "yup";
 import firebase from "firebase";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
@@ -49,14 +51,33 @@ function SignInButton(props) {
   };
 
   const handleOpenSignUp = () => {
-    setOpen(false)
-    setSignUpOpen(true)
-  }
+    setOpen(false);
+    setSignUpOpen(true);
+  };
 
   const backFromSignUp = () => {
-    setSignUpOpen(false)
-    setOpen(true)
-  }
+    setSignUpOpen(false);
+    setOpen(true);
+  };
+
+  const validationSchema = yup.object({
+    email: yup.string().email("Please enter valid email").required("Required"),
+    password: yup
+      .string()
+      .min(8, ({ min }) => `Must be at least ${min} characters`)
+      .required("Required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   initFirebaseAuth();
   return (
@@ -87,48 +108,54 @@ function SignInButton(props) {
         onClose={handleClickClose}
         aria-labelledby="form-dialog-title"
       >
-        <IconButton onClick={handleClickClose} />
-        <DialogTitle>Sign In</DialogTitle>
-        <DialogContent className="dialog-content">
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            autoComplete="off"
-            fullWidth
-          />
-          <TextField
-            margin="dense"
-            id="password"
-            label="Password"
-            type="password"
-            autoComplete="off"
-            fullWidth
-          />
-          <Button onClick={handleOpenSignUp} color="primary" size="small">
-            Need an account? Click Here
-          </Button>
-          <br />
-          <br />
-          <ButtonGoogleSignIn />
-          <br />
-          <br />
-          <ButtonFacebookSignIn />
-        </DialogContent>
-        <DialogActions>
-          <Button
-            onClick={handleClickClose}
-            variant="contained"
-            color="primary"
-          >
-            Sign In
-          </Button>
-        </DialogActions>
+        <form onSubmit={formik.handleSubmit}>
+          <IconButton onClick={handleClickClose} />
+          <DialogTitle>Sign In</DialogTitle>
+          <DialogContent className="dialog-content">
+            <TextField
+              id="email"
+              name="email"
+              label="Email Address"
+              type="email"
+              autoComplete="off"
+              fullWidth
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              error={formik.touched.email && Boolean(formik.errors.email)}
+              helperText={formik.touched.email && formik.errors.email}
+            />
+            <TextField
+              id="password"
+              name="password"
+              label="Password"
+              type="password"
+              autoComplete="off"
+              fullWidth
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              error={formik.touched.password && Boolean(formik.errors.password)}
+              helperText={formik.touched.password && formik.errors.password}
+            />
+            <Button onClick={handleOpenSignUp} color="primary" size="small">
+              Need an account? Click Here
+            </Button>
+            <br />
+            <br />
+            <ButtonGoogleSignIn />
+            <br />
+            <br />
+            <ButtonFacebookSignIn />
+          </DialogContent>
+          <DialogActions>
+            <Button variant="contained" color="primary" type="submit">
+              Sign In
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
-      {signUpOpen && 
-      <SignUpDialog setOpen={setSignUpOpen} goBack={backFromSignUp}/>}
+      {signUpOpen && (
+        <SignUpDialog setOpen={setSignUpOpen} goBack={backFromSignUp} />
+      )}
     </div>
   );
 }
