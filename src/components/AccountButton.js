@@ -1,11 +1,19 @@
 import { Button, Avatar } from "@material-ui/core";
 import "./AccountButton.scss";
-import React from "react";
-import userPlaceHolder from "../assets/user-solid-fontawesome.svg";
+import React, { useState } from "react";
 import * as userProvider from "../UserProvider";
 
 function AccountButton(props) {
   const user = userProvider.useUserContext();
+  const [initial, setInitial] = useState("");
+
+  if (user !== "") {
+    if(user.displayName !== undefined) {
+      setInitial(user.displayName.toString().charAt(0));
+    }
+  } else {
+    setInitial("");
+  }
 
   const getProfilePicUrl = () => {
     return user.photoURL;
@@ -23,7 +31,7 @@ function AccountButton(props) {
 
   return (
     <div className="account-button">
-      {user != "" && (
+      {user !== "" && (
         <Button
           variant="text"
           startIcon={
@@ -31,13 +39,12 @@ function AccountButton(props) {
               {user.photoURL === "" && (
                 <img
                   className="account-button-pic"
+                  alt=""
                   src={addSizeToGoogleProfilePic(getProfilePicUrl())}
                 />
               )}
-              {user.photoURL !== "" && (
-                <Avatar className="account-button-pic">
-                  {user.displayName.charAt(0)}
-                </Avatar>
+              {user !== "" && user.photoURL !== "" && (
+                <Avatar className="account-button-pic">{initial}</Avatar>
               )}
             </div>
           }

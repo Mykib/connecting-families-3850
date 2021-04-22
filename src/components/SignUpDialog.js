@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SignUpDialog.scss";
 import {
   Button,
@@ -17,7 +17,6 @@ import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import * as userProvider from "../UserProvider";
 
 function SignUpDialog(props) {
-  const user = userProvider.useUserContext();
   const setUser = userProvider.useUserContextUpdate();
   const open = true;
 
@@ -58,7 +57,6 @@ function SignUpDialog(props) {
           // ...
         })
         .catch((error) => {
-          var errorCode = error.code;
           var errorMessage = error.message;
           alert(`Signin error: ${errorMessage}`);
           // ..

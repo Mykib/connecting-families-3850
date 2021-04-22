@@ -86,7 +86,6 @@ function SignInButton(props) {
           // ...
         })
         .catch((error) => {
-          var errorCode = error.code;
           var errorMessage = error.message;
           alert(`Signup error: ${errorMessage}`)
         });
@@ -97,7 +96,7 @@ function SignInButton(props) {
   return (
     <div id="user-container">
       <div className="icon-button"></div>
-      {user == "" && (
+      {user === "" && (
         <Button
           variant="outlined"
           color="default"
@@ -107,7 +106,7 @@ function SignInButton(props) {
           Sign-In
         </Button>
       )}
-      {user != "" && (
+      {user !== "" && (
         <Button
           variant="outlined"
           color="default"

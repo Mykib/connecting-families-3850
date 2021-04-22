@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@material-ui/core";
 import firebase from "firebase";
 import googleIcon from "../assets/Google__G__Logo.svg.png";
@@ -15,7 +15,7 @@ function ButtonGoogleSignIn(props) {
     <Button
       onClick={signIn}
       variant="outlined"
-      startIcon={<img className="button-icon" src={googleIcon} />}
+      startIcon={<img className="button-icon" alt="" src={googleIcon} />}
       fullWidth
     >
       Sign in with Google

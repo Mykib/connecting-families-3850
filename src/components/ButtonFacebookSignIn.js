@@ -21,7 +21,7 @@ function ButtonFacebookSignIn(props) {
     <Button
       onClick={signIn}
       variant="outlined"
-      startIcon={<img className="button-icon" src={facebookIcon} />}
+      startIcon={<img className="button-icon" alt="" src={facebookIcon} />}
       fullWidth
     >
       Sign in with Facebook

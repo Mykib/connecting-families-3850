@@ -11,14 +11,6 @@ export function useUserContextUpdate() {
   return useContext(UserContextUpdate);
 }
 
-// ADD IMAGE SIZE TO PROFILE PICTURE URL
-const addSizeToGoogleProfilePic = (url) => {
-  if (url.indexOf("googleusercontent.com") !== -1 && url.indexOf("?") === -1) {
-    return url + "?sz=150";
-  }
-  return url;
-};
-
 function UserProvider({children}) {
   const [user, setUser] = useState([]);
 
