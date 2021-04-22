@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
-import reportWebVitals from "./reportWebVitals";
+import reportWebVitals from "./utils/reportWebVitals";
 import firebase from "./utils/firebase";
 import { ThemeProvider } from "@material-ui/core";
-import App from "./App";
-import theme from "./theme";
+import Home from "./pages/Home";
+import theme from "./Theme";
 import UserProvider from "./UserProvider";
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <UserProvider>
-        <App />
+        <Home />
       </UserProvider>
     </ThemeProvider>
   </React.StrictMode>,
