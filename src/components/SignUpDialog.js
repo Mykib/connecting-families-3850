@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./SignInButton.scss";
+import "./SignUpDialog.scss";
 import {
   Button,
   TextField,
@@ -14,29 +14,10 @@ import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import * as userProvider from "../UserProvider";
 
-function SignInButton(props) {
+function SignUpDialog(props) {
   const [open, setOpen] = useState(false);
   const user = userProvider.useUserContext();
   const setUser = userProvider.useUserContextUpdate();
-
-  // INITIATE FIREBASE AUTH
-  const initFirebaseAuth = () => {
-    firebase.auth().onAuthStateChanged(authStateObserver);
-  };
-
-  // SIGNED IN STATE OBSERVER
-  const authStateObserver = (user) => {
-    if (user) {
-      handleClickClose();
-      setUser(firebase.auth().currentUser);
-    } else {
-    }
-  };
-
-  const signOut = () => {
-    firebase.auth().signOut();
-    setUser([]);
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -46,41 +27,34 @@ function SignInButton(props) {
     setOpen(false);
   };
 
-  initFirebaseAuth();
   return (
-    <div id="user-container">
-      <div className="icon-button"></div>
-      {user == "" && (
-        <Button
-          variant="outlined"
-          color="default"
-          id="sign-in"
-          onClick={handleClickOpen}
-        >
-          Sign-In
-        </Button>
-      )}
-      {user != "" && (
-        <Button
-          variant="outlined"
-          color="default"
-          id="sign-in"
-          onClick={signOut}
-        >
-          Sign-Out
-        </Button>
-      )}
+    <div>
       <Dialog
         open={open}
         onClose={handleClickClose}
         aria-labelledby="form-dialog-title"
+        // className="dialog-card"
       >
         <IconButton onClick={handleClickClose} />
-        <DialogTitle>Sign In</DialogTitle>
+        <DialogTitle>Sign Up</DialogTitle>
         <DialogContent className="dialog-content">
+          <div className="single-row">
+            <TextField
+              autoFocus
+              id="name"
+              label="First Name"
+              type="name"
+              autoComplete="off"
+            />
+            <TextField
+              id="surname"
+              label="Surname"
+              type="name"
+              autoComplete="off"
+            />
+          </div>
           <TextField
             autoFocus
-            margin="dense"
             id="name"
             label="Email Address"
             type="email"
@@ -88,21 +62,25 @@ function SignInButton(props) {
             fullWidth
           />
           <TextField
-            margin="dense"
+            autoFocus
             id="password"
             label="Password"
             type="password"
             autoComplete="off"
             fullWidth
           />
+          <TextField
+            autoFocus
+            id="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            autoComplete="off"
+            fullWidth
+          />
           <Button onClick={handleClickClose} color="primary" size="small">
-            Need an account? Click Here
+            have an account? Login Here
           </Button>
-          <br />
-          <br />
           <ButtonGoogleSignIn />
-          <br />
-          <br />
           <ButtonFacebookSignIn />
         </DialogContent>
         <DialogActions>
@@ -119,4 +97,4 @@ function SignInButton(props) {
   );
 }
 
-export default SignInButton;
+export default SignUpDialog;

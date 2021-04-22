@@ -7,6 +7,7 @@ function ButtonGoogleSignIn(props) {
   // SIGN IN HANDLER
   const signIn = () => {
     var provider = new firebase.auth.GoogleAuthProvider();
+    
     firebase.auth().signInWithPopup(provider);
   };
 

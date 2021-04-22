@@ -15,6 +15,19 @@ const theme = createMuiTheme({
     },
   },
   overrides: {
+    MuiDialogTitle: {
+      root: {
+        margin: 0,
+        padding: "0px 24px",
+        flex: "1",
+        textAlign: "center",
+      },
+    },
+    MuiDialog: {
+      paperWidthSm: {
+        maxWidth: "350px",
+      }
+    },
     MuiButton: {
       root: {
         borderRadius: "2em",

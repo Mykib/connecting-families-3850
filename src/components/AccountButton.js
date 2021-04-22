@@ -5,6 +5,7 @@ import * as userProvider from "../UserProvider";
 
 function AccountButton(props) {
   const user = userProvider.useUserContext();
+  console.log(user)
 
   const getProfilePicUrl = () => {
     return user.photoURL || "/images/profile_placeholder.png";
