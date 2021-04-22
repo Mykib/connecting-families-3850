@@ -24,10 +24,7 @@ function SignUpDialog(props) {
   const validationSchema = yup.object({
     firstName: yup.string().required("Required"),
     surname: yup.string().required("Required"),
-    email: yup
-      .string()
-      .email("Please enter valid email")
-      .required("Required"),
+    email: yup.string().email("Please enter valid email").required("Required"),
     password: yup
       .string()
       .min(8, ({ min }) => `Must be at least ${min} characters`)
@@ -47,7 +44,25 @@ function SignUpDialog(props) {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(values.email, values.password)
+        .then((userCredential) => {
+          // Signed in
+          firebase.auth().currentUser.updateProfile({
+            displayName: values.firstName + " " + values.surname.charAt(0),
+          });
+          setUser(firebase.auth().currentUser);
+          console.log(`Signup & Login Successful`, userCredential);
+          handleClickClose();
+          // ...
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(`Signin error: ${errorMessage}`);
+          // ..
+        });
     },
   });
 
@@ -61,10 +76,9 @@ function SignUpDialog(props) {
         open={open}
         onClose={handleClickClose}
         aria-labelledby="form-dialog-title"
-        // className="dialog-card"
       >
         <form onSubmit={formik.handleSubmit}>
-          <IconButton onClick={handleClickClose} />
+          <IconButton onClick={props.goBack} />
           <DialogTitle>Sign Up</DialogTitle>
           <DialogContent className="dialog-content">
             <div className="single-row">
@@ -77,7 +91,9 @@ function SignUpDialog(props) {
                 autoComplete="off"
                 value={formik.values.firstName}
                 onChange={formik.handleChange}
-                error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                error={
+                  formik.touched.firstName && Boolean(formik.errors.firstName)
+                }
                 helperText={formik.touched.firstName && formik.errors.firstName}
               />
               <TextField
@@ -125,8 +141,13 @@ function SignUpDialog(props) {
               fullWidth
               value={formik.values.confirmation}
               onChange={formik.handleChange}
-              error={formik.touched.confirmation && Boolean(formik.errors.confirmation)}
-              helperText={formik.touched.confirmation && formik.errors.confirmation}
+              error={
+                formik.touched.confirmation &&
+                Boolean(formik.errors.confirmation)
+              }
+              helperText={
+                formik.touched.confirmation && formik.errors.confirmation
+              }
             />
             <Button onClick={props.goBack} color="primary" size="small">
               have an account? Login Here
@@ -135,11 +156,7 @@ function SignUpDialog(props) {
             <ButtonFacebookSignIn />
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-            >
+            <Button variant="contained" color="primary" type="submit">
               Sign Up
             </Button>
           </DialogActions>

@@ -75,7 +75,21 @@ function SignInButton(props) {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then((userCredential) => {
+          // Signed in
+          setUser(userCredential.user)
+          console.log(`Successfully signed in`, userCredential)
+          handleClickClose()
+          // ...
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          alert(`Signup error: ${errorMessage}`)
+        });
     },
   });
 

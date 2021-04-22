@@ -28,6 +28,12 @@ const theme = createMuiTheme({
         maxWidth: "350px",
       }
     },
+    MuiAvatar: {
+      root: {
+        width: "inherit",
+        height: "inherit",
+      },
+    },
     MuiButton: {
       root: {
         borderRadius: "2em",
