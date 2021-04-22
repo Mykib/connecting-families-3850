@@ -1,4 +1,3 @@
-import { Icon } from '@material-ui/core';
 import React from 'react';
 import './IconButton.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

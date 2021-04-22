@@ -1,31 +1,24 @@
-@mixin absolute-position {
+.account-button {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: 0.5em;
+    left: 0.5em;
 }
 
-#sign-out {
-    @include absolute-position();
-}
-
-#sign-in {
-    @include absolute-position();
-}
-
-#user-pic {
-    @include absolute-position();
-    right: auto;
-    left: 1rem;
-    width: 3rem;
-
-    border-radius: 50%;
-    border-width: 1px;
-    border-color: white;
+.account-button-pic-container {
+    height: 1.5em;
+    width: 1.5em;
+    border-radius: 0.75em;
     border-style: solid;
+    border-width: 1px;
+    margin-top: -0.45em;
+    margin-left: -0.1em;
 }
 
-#user-name {
-    position: absolute;
-    top: 1.5rem;
-    left: 5rem;
+.account-button-pic {
+    height: 1.5em;
+    width: 1.5em;
+}
+
+.account-button-text {
+    margin-left: 1em;
 }

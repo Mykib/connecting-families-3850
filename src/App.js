@@ -1,12 +1,14 @@
 import './App.scss';
-import AccountButton from './components/AccountButton';
+import SignInButton from './components/SignInButton';
 import RotatingLogo from './components/RotatingLogo';
+import AccountButton from './components/AccountButton';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <AccountButton/>
+        <SignInButton/>
         <RotatingLogo/>
         <p>
           <code>Coming Soon!</code>
