@@ -15,16 +15,12 @@ import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import * as userProvider from "../UserProvider";
 
 function SignUpDialog(props) {
-  const [open, setOpen] = useState(false);
   const user = userProvider.useUserContext();
   const setUser = userProvider.useUserContextUpdate();
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const open = true;
 
   const handleClickClose = () => {
-    setOpen(false);
+    props.setOpen(false);
   };
 
   return (
@@ -77,7 +73,7 @@ function SignUpDialog(props) {
             autoComplete="off"
             fullWidth
           />
-          <Button onClick={handleClickClose} color="primary" size="small">
+          <Button onClick={props.goBack} color="primary" size="small">
             have an account? Login Here
           </Button>
           <ButtonGoogleSignIn />

@@ -13,11 +13,13 @@ import firebase from "firebase";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import * as userProvider from "../UserProvider";
+import SignUpDialog from "./SignUpDialog";
 
 function SignInButton(props) {
   const [open, setOpen] = useState(false);
   const user = userProvider.useUserContext();
   const setUser = userProvider.useUserContextUpdate();
+  const [signUpOpen, setSignUpOpen] = useState(false);
 
   // INITIATE FIREBASE AUTH
   const initFirebaseAuth = () => {
@@ -45,6 +47,16 @@ function SignInButton(props) {
   const handleClickClose = () => {
     setOpen(false);
   };
+
+  const handleOpenSignUp = () => {
+    setOpen(false)
+    setSignUpOpen(true)
+  }
+
+  const backFromSignUp = () => {
+    setSignUpOpen(false)
+    setOpen(true)
+  }
 
   initFirebaseAuth();
   return (
@@ -95,7 +107,7 @@ function SignInButton(props) {
             autoComplete="off"
             fullWidth
           />
-          <Button onClick={handleClickClose} color="primary" size="small">
+          <Button onClick={handleOpenSignUp} color="primary" size="small">
             Need an account? Click Here
           </Button>
           <br />
@@ -115,6 +127,8 @@ function SignInButton(props) {
           </Button>
         </DialogActions>
       </Dialog>
+      {signUpOpen && 
+      <SignUpDialog setOpen={setSignUpOpen} goBack={backFromSignUp}/>}
     </div>
   );
 }
