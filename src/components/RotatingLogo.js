@@ -1,5 +1,5 @@
 import React from "react";
-import "./RotatingLogo.css";
+import "./RotatingLogo.scss";
 import leafBlue from "../assets/cf-leaf-blue.svg";
 import leafOrange from "../assets/cf-leaf-orange.svg";
 import leafPurple from "../assets/cf-leaf-purp.svg";

@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import AccountButton from './components/AccountButton';
 import RotatingLogo from './components/RotatingLogo';
 

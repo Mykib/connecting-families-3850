@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AccountButton.css";
+import "./AccountButton.scss";
 import firebase from "firebase";
 import { Button } from '@material-ui/core';
 
