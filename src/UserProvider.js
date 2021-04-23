@@ -11,11 +11,11 @@ export function useUserContextUpdate() {
   return useContext(UserContextUpdate);
 }
 
-function UserProvider({children}) {
+function UserProvider({ children }) {
   const [user, setUser] = useState([]);
 
   function setUserContext(u) {
-    setUser(u)
+    setUser(u);
   }
 
   return (

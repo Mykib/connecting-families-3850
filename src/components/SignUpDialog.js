@@ -1,25 +1,27 @@
-import React, { useState } from "react";
 import "./SignUpDialog.scss";
+
+import * as yup from "yup";
+
 import {
   Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  TextField,
 } from "@material-ui/core";
-import IconButton from "./IconButton";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
+import React, { useState } from "react";
+
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
+import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
+import IconButton from "./IconButton";
 import firebase from "firebase";
-import { withRouter } from 'react-router-dom'
+import { useFormik } from "formik";
+import { withRouter } from "react-router-dom";
 
 function SignUpDialog(props) {
   const open = true;
-  const [error, setError] = useState(false);
-  const [helperText, setHelperText] = useState('');
+  const [helperText, setHelperText] = useState("");
 
   const validationSchema = yup.object({
     firstName: yup.string().required("Required"),
@@ -48,18 +50,21 @@ function SignUpDialog(props) {
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
         .then(() => {
-          firebase.auth().currentUser.updateProfile({
-            displayName: values.firstName + " " + values.surname.charAt(0),
-          }).then(() => {
-            handleClickClose();
-            props.history.push("/");
-          }).catch(e => {
-            console.log(e.message)
-          })
+          firebase
+            .auth()
+            .currentUser.updateProfile({
+              displayName: values.firstName + " " + values.surname.charAt(0),
+            })
+            .then(() => {
+              handleClickClose();
+              props.history.push("/");
+            })
+            .catch((e) => {
+              console.log(e.message);
+            });
         })
         .catch((e) => {
           setHelperText(e.message);
-          setError(true);
         });
     },
   });
@@ -150,10 +155,19 @@ function SignUpDialog(props) {
             <Button onClick={props.goBack} color="primary" size="small">
               have an account? Login Here
             </Button>
-            <ButtonGoogleSignIn handleClickClose={handleClickClose}/>
-            <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
+            <ButtonGoogleSignIn handleClickClose={handleClickClose} />
+            <ButtonFacebookSignIn handleClickClose={handleClickClose} />
           </DialogContent>
-          <Button variant="text" color="error" size="small" disabled fullWidth className="error-button">{helperText}</Button>
+          <Button
+            variant="text"
+            color="error"
+            size="small"
+            disabled
+            fullWidth
+            className="error-button"
+          >
+            {helperText}
+          </Button>
           <DialogActions className="neg-margin">
             <Button variant="contained" color="primary" type="submit">
               Sign Up

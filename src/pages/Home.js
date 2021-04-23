@@ -1,16 +1,16 @@
-import './Home.scss';
-import SignInButton from '../components/SignInButton';
-import RotatingLogo from '../components/RotatingLogo';
-import AccountButton from '../components/AccountButton';
-import firebase from 'firebase'
+import "./Home.scss";
+
+import AccountButton from "../components/AccountButton";
+import RotatingLogo from "../components/RotatingLogo";
+import SignInButton from "../components/SignInButton";
 
 function Home() {
   return (
     <div className="home">
       <header className="home-header">
-        <AccountButton/>
-        <SignInButton/>
-        <RotatingLogo/>
+        <AccountButton />
+        <SignInButton />
+        <RotatingLogo />
         <p>
           <code>Coming Soon!</code>
         </p>

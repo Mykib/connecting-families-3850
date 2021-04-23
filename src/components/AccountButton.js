@@ -1,7 +1,9 @@
-import { Button, Avatar } from "@material-ui/core";
 import "./AccountButton.scss";
-import React, { useState } from "react";
-import firebase from 'firebase'
+
+import { Avatar, Button } from "@material-ui/core";
+
+import React from "react";
+import firebase from "firebase";
 
 function AccountButton(props) {
   const user = firebase.auth().currentUser;
@@ -11,7 +13,7 @@ function AccountButton(props) {
   };
 
   function addSizeToGoogleProfilePic(url) {
-    if(url){
+    if (url) {
       if (
         url.indexOf("googleusercontent.com") !== -1 &&
         url.indexOf("?") === -1
@@ -24,7 +26,7 @@ function AccountButton(props) {
   }
 
   return (
-    <div className="account-button"> 
+    <div className="account-button">
       {user !== null && (
         <Button
           variant="text"

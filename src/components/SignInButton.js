@@ -1,27 +1,29 @@
-import React, { useState } from "react";
 import "./SignInButton.scss";
+
+import * as yup from "yup";
+
 import {
   Button,
-  TextField,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  TextField,
 } from "@material-ui/core";
-import IconButton from "./IconButton";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
+import React, { useState } from "react";
+
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
+import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
+import IconButton from "./IconButton";
 import SignUpDialog from "./SignUpDialog";
 import firebase from "firebase";
-import { withRouter } from 'react-router-dom'
+import { useFormik } from "formik";
+import { withRouter } from "react-router-dom";
 
 function SignInButton(props) {
   const [open, setOpen] = useState(false);
   const [signUpOpen, setSignUpOpen] = useState(false);
-  const [error, setError] = useState(false);
-  const [helperText, setHelperText] = useState('');
+  const [helperText, setHelperText] = useState("");
   const user = firebase.auth().currentUser;
 
   const signOut = () => {
@@ -78,7 +80,6 @@ function SignInButton(props) {
         })
         .catch((e) => {
           setHelperText(e.message);
-          setError(true);
         });
     },
   });
@@ -144,12 +145,21 @@ function SignInButton(props) {
             </Button>
             <br />
             <br />
-            <ButtonGoogleSignIn handleClickClose={handleClickClose}/>
+            <ButtonGoogleSignIn handleClickClose={handleClickClose} />
             <br />
             <br />
-            <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
+            <ButtonFacebookSignIn handleClickClose={handleClickClose} />
           </DialogContent>
-          <Button variant="text" color="error" size="small" fullWidth disabled className="error-button">{helperText}</Button>
+          <Button
+            variant="text"
+            color="error"
+            size="small"
+            fullWidth
+            disabled
+            className="error-button"
+          >
+            {helperText}
+          </Button>
           <DialogActions className="neg-margin">
             <Button variant="contained" color="primary" type="submit">
               Sign In
