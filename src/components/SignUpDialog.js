@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignUpDialog.scss";
 import {
   Button,
@@ -18,6 +18,9 @@ import { withRouter } from 'react-router-dom'
 
 function SignUpDialog(props) {
   const open = true;
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('');
+
   const validationSchema = yup.object({
     firstName: yup.string().required("Required"),
     surname: yup.string().required("Required"),
@@ -44,7 +47,7 @@ function SignUpDialog(props) {
       firebase
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
-        .then((userCredential) => {
+        .then(() => {
           firebase.auth().currentUser.updateProfile({
             displayName: values.firstName + " " + values.surname.charAt(0),
           }).then(() => {
@@ -55,7 +58,8 @@ function SignUpDialog(props) {
           })
         })
         .catch((e) => {
-          alert(`Signin error: `, e.message);
+          setHelperText(e.message);
+          setError(true);
         });
     },
   });
@@ -149,7 +153,8 @@ function SignUpDialog(props) {
             <ButtonGoogleSignIn handleClickClose={handleClickClose}/>
             <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
           </DialogContent>
-          <DialogActions>
+          <Button variant="text" color="error" size="small" disabled fullWidth className="error-button">{helperText}</Button>
+          <DialogActions className="neg-margin">
             <Button variant="contained" color="primary" type="submit">
               Sign Up
             </Button>

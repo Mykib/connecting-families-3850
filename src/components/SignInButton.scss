@@ -26,3 +26,13 @@
     margin: auto;
     width: 24rem;
 }
+
+.error-button {
+    .MuiButton-label{
+        color: red;
+    }
+}
+
+.neg-margin {
+    margin-top: -1em;
+}

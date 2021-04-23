@@ -20,6 +20,8 @@ import { withRouter } from 'react-router-dom'
 function SignInButton(props) {
   const [open, setOpen] = useState(false);
   const [signUpOpen, setSignUpOpen] = useState(false);
+  const [error, setError] = useState(false);
+  const [helperText, setHelperText] = useState('');
   const user = firebase.auth().currentUser;
 
   const signOut = () => {
@@ -74,9 +76,9 @@ function SignInButton(props) {
           handleClickClose();
           props.history.push("/");
         })
-        .catch((error) => {
-          var errorMessage = error.message;
-          alert(`Signup error: ${errorMessage}`);
+        .catch((e) => {
+          setHelperText(e.message);
+          setError(true);
         });
     },
   });
@@ -147,7 +149,8 @@ function SignInButton(props) {
             <br />
             <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
           </DialogContent>
-          <DialogActions>
+          <Button variant="text" color="error" size="small" fullWidth disabled className="error-button">{helperText}</Button>
+          <DialogActions className="neg-margin">
             <Button variant="contained" color="primary" type="submit">
               Sign In
             </Button>
