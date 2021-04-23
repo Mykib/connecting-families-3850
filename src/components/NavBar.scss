@@ -1,0 +1,119 @@
+@mixin flex-children {
+    padding: 0.2em;
+    // border-color: ivory;
+    // border-width: 1px;
+    // border-style: solid;
+}
+
+.nav-bar {
+    height: 3rem;
+    width: 100vw;
+    background-color: #453f3c;
+    box-shadow: 0px 3px 5px grey;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 0.5em;
+}
+.ca-home {
+    @include flex-children();
+    display: flex;
+    flex-grow: 0;
+    .leaf-logo {
+        height: 2.5rem;
+        width: 2.5rem;
+        filter: invert(1);
+        padding-right: 0.2em;
+    }
+    h1 {
+        font-size: large;
+        font-weight: inherit;
+        margin: inherit;
+        padding: inherit;
+    }
+    .ca-text {
+        font-size: small;
+    }
+}
+.nav-spacer {
+    flex-grow: 1;
+}
+.nav-items {
+    @include flex-children();
+    flex-grow: 0;
+}
+.aa-link {
+    @include flex-children();
+    flex-grow: 0;
+    img {
+        height: 2.2em;
+    }
+}
+.account-button {
+    @include flex-children();
+    flex-grow: 0;
+    padding-right: 1em;
+}
+
+@media only screen and (max-width: 750px) {
+    @mixin flex-children {
+        padding: 0.2em;
+        // border-color: ivory;
+        // border-width: 1px;
+        // border-style: solid;
+    }
+    
+    .nav-bar {
+        height: 3rem;
+        width: 100vw;
+        background-color: #453f3c;
+        box-shadow: 0px 3px 5px grey;
+    
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: green;
+        padding: 0.5em;
+    }
+    .ca-home {
+        @include flex-children();
+        display: flex;
+        flex-grow: 0;
+        .leaf-logo {
+            height: 2.5rem;
+            width: 2.5rem;
+            filter: invert(1);
+            padding-right: 0.2em;
+        }
+        h1 {
+            font-size: large;
+            font-weight: inherit;
+            margin: inherit;
+            padding: inherit;
+        }
+        .ca-text {
+            font-size: small;
+        }
+    }
+    .nav-spacer {
+        flex-grow: 1;
+    }
+    .nav-items {
+        @include flex-children();
+        flex-grow: 0;
+    }
+    .aa-link {
+        @include flex-children();
+        flex-grow: 0;
+        img {
+            height: 2.2em;
+        }
+    }
+    .account-button {
+        @include flex-children();
+        flex-grow: 0;
+        padding-right: 1em;
+    }
+}

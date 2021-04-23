@@ -11,6 +11,9 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    background-image: url('../assets/pexels-ketut-subiyanto-4473604.jpg');
+    background-size: cover;
+    background-blend-mode: luminosity;
 }
 
 @keyframes App-logo-spin {

@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import { AuthProvider } from "./auth";
 import Home from "./pages/Home";
+import NavBar from "./components/NavBar";
 import React from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "@material-ui/core";
@@ -15,6 +16,7 @@ ReactDOM.render(
     <AuthProvider>
       <ThemeProvider theme={theme}>
         <Router>
+          <NavBar/>
           <Switch>
             <Route exact path="/" component={Home} />
           </Switch>
