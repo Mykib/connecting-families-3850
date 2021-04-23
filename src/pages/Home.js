@@ -2,6 +2,7 @@ import './Home.scss';
 import SignInButton from '../components/SignInButton';
 import RotatingLogo from '../components/RotatingLogo';
 import AccountButton from '../components/AccountButton';
+import firebase from 'firebase'
 
 function Home() {
   return (

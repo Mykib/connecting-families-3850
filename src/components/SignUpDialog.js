@@ -11,15 +11,13 @@ import {
 import IconButton from "./IconButton";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import firebase from "firebase";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
-import * as userProvider from "../UserProvider";
+import firebase from "firebase";
+import { withRouter } from 'react-router-dom'
 
 function SignUpDialog(props) {
-  const setUser = userProvider.useUserContextUpdate();
   const open = true;
-
   const validationSchema = yup.object({
     firstName: yup.string().required("Required"),
     surname: yup.string().required("Required"),
@@ -47,19 +45,17 @@ function SignUpDialog(props) {
         .auth()
         .createUserWithEmailAndPassword(values.email, values.password)
         .then((userCredential) => {
-          // Signed in
           firebase.auth().currentUser.updateProfile({
             displayName: values.firstName + " " + values.surname.charAt(0),
-          });
-          setUser(firebase.auth().currentUser);
-          console.log(`Signup & Login Successful`, userCredential);
-          handleClickClose();
-          // ...
+          }).then(() => {
+            handleClickClose();
+            props.history.push("/");
+          }).catch(e => {
+            console.log(e.message)
+          })
         })
-        .catch((error) => {
-          var errorMessage = error.message;
-          alert(`Signin error: ${errorMessage}`);
-          // ..
+        .catch((e) => {
+          alert(`Signin error: `, e.message);
         });
     },
   });
@@ -150,8 +146,8 @@ function SignUpDialog(props) {
             <Button onClick={props.goBack} color="primary" size="small">
               have an account? Login Here
             </Button>
-            <ButtonGoogleSignIn />
-            <ButtonFacebookSignIn />
+            <ButtonGoogleSignIn handleClickClose={handleClickClose}/>
+            <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
           </DialogContent>
           <DialogActions>
             <Button variant="contained" color="primary" type="submit">
@@ -164,4 +160,4 @@ function SignUpDialog(props) {
   );
 }
 
-export default SignUpDialog;
+export default withRouter(SignUpDialog);

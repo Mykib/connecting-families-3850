@@ -2,18 +2,19 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import firebase from "firebase";
 import facebookIcon from "../assets/Facebook_icon_2013.svg";
+import { withRouter } from 'react-router-dom'
 
 function ButtonFacebookSignIn(props) {
-  // SIGN IN HANDLER
   const signIn = () => {
     var provider = new firebase.auth.FacebookAuthProvider();    
-    firebase.auth().signInWithPopup(provider).then(function(result) {
-      // This gives you a Facebook Access Token.
-      var token = result.credential.accessToken;
-      // The signed-in user info.
-      var user = result.user;
-      console.log(user)
-      console.log(token)
+    firebase.auth().signInWithPopup(provider)
+    .then(() => {
+      props.handleClickClose();
+      props.history.push("/");
+    })
+    .catch((error) => {
+      var errorMessage = error.message;
+      alert(`Signup error: ${errorMessage}`);
     });
   };
   
@@ -29,4 +30,4 @@ function ButtonFacebookSignIn(props) {
   );
 }
 
-export default ButtonFacebookSignIn;
+export default withRouter(ButtonFacebookSignIn);

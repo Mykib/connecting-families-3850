@@ -1,50 +1,44 @@
 import { Button, Avatar } from "@material-ui/core";
 import "./AccountButton.scss";
 import React, { useState } from "react";
-import * as userProvider from "../UserProvider";
+import firebase from 'firebase'
 
 function AccountButton(props) {
-  const user = userProvider.useUserContext();
-  const [initial, setInitial] = useState("");
-
-  if (user !== "") {
-    if(user.displayName !== undefined) {
-      setInitial(user.displayName.toString().charAt(0));
-    }
-  } else {
-    setInitial("");
-  }
+  const user = firebase.auth().currentUser;
 
   const getProfilePicUrl = () => {
     return user.photoURL;
   };
 
   function addSizeToGoogleProfilePic(url) {
-    if (
-      url.indexOf("googleusercontent.com") !== -1 &&
-      url.indexOf("?") === -1
-    ) {
-      return url + "?sz=150";
+    if(url){
+      if (
+        url.indexOf("googleusercontent.com") !== -1 &&
+        url.indexOf("?") === -1
+      ) {
+        return url + "?sz=150";
+      }
+      return url;
     }
     return url;
   }
 
   return (
-    <div className="account-button">
-      {user !== "" && (
+    <div className="account-button"> 
+      {user !== null && (
         <Button
           variant="text"
           startIcon={
             <div className="account-button-pic-container">
-              {user.photoURL === "" && (
+              {user.photoURL && (
                 <img
                   className="account-button-pic"
                   alt=""
                   src={addSizeToGoogleProfilePic(getProfilePicUrl())}
                 />
               )}
-              {user !== "" && user.photoURL !== "" && (
-                <Avatar className="account-button-pic">{initial}</Avatar>
+              {user !== null && !user.photoURL && (
+                <Avatar className="account-button-pic"></Avatar>
               )}
             </div>
           }

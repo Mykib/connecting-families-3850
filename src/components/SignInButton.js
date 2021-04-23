@@ -11,35 +11,27 @@ import {
 import IconButton from "./IconButton";
 import { useFormik } from "formik";
 import * as yup from "yup";
-import firebase from "firebase";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
-import * as userProvider from "../UserProvider";
 import SignUpDialog from "./SignUpDialog";
+import firebase from "firebase";
+import { withRouter } from 'react-router-dom'
 
 function SignInButton(props) {
   const [open, setOpen] = useState(false);
-  const user = userProvider.useUserContext();
-  const setUser = userProvider.useUserContextUpdate();
   const [signUpOpen, setSignUpOpen] = useState(false);
-
-  // INITIATE FIREBASE AUTH
-  const initFirebaseAuth = () => {
-    firebase.auth().onAuthStateChanged(authStateObserver);
-  };
-
-  // SIGNED IN STATE OBSERVER
-  const authStateObserver = (user) => {
-    if (user) {
-      handleClickClose();
-      setUser(firebase.auth().currentUser);
-    } else {
-    }
-  };
+  const user = firebase.auth().currentUser;
 
   const signOut = () => {
-    firebase.auth().signOut();
-    setUser([]);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        props.history.push("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
 
   const handleClickOpen = () => {
@@ -78,25 +70,21 @@ function SignInButton(props) {
       firebase
         .auth()
         .signInWithEmailAndPassword(values.email, values.password)
-        .then((userCredential) => {
-          // Signed in
-          setUser(userCredential.user)
-          console.log(`Successfully signed in`, userCredential)
-          handleClickClose()
-          // ...
+        .then(() => {
+          handleClickClose();
+          props.history.push("/");
         })
         .catch((error) => {
           var errorMessage = error.message;
-          alert(`Signup error: ${errorMessage}`)
+          alert(`Signup error: ${errorMessage}`);
         });
     },
   });
 
-  initFirebaseAuth();
   return (
     <div id="user-container">
       <div className="icon-button"></div>
-      {user === "" && (
+      {user === null && (
         <Button
           variant="outlined"
           color="default"
@@ -106,7 +94,7 @@ function SignInButton(props) {
           Sign-In
         </Button>
       )}
-      {user !== "" && (
+      {user !== null && (
         <Button
           variant="outlined"
           color="default"
@@ -154,10 +142,10 @@ function SignInButton(props) {
             </Button>
             <br />
             <br />
-            <ButtonGoogleSignIn />
+            <ButtonGoogleSignIn handleClickClose={handleClickClose}/>
             <br />
             <br />
-            <ButtonFacebookSignIn />
+            <ButtonFacebookSignIn handleClickClose={handleClickClose}/>
           </DialogContent>
           <DialogActions>
             <Button variant="contained" color="primary" type="submit">
@@ -173,4 +161,4 @@ function SignInButton(props) {
   );
 }
 
-export default SignInButton;
+export default withRouter(SignInButton);

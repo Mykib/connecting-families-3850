@@ -1,20 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import "./index.scss";
 import reportWebVitals from "./utils/reportWebVitals";
 import firebase from "./utils/firebase";
 import { ThemeProvider } from "@material-ui/core";
 import Home from "./pages/Home";
-import theme from "./Theme";
-import UserProvider from "./UserProvider";
+import theme from "./theme";
+import { AuthProvider } from "./auth";
 
 ReactDOM.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <UserProvider>
-        <Home />
-      </UserProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route exact path='/' component={Home} />
+          </Switch>
+        </Router>
+      </ThemeProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
