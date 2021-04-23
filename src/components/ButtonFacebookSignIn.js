@@ -1,7 +1,9 @@
+import 'firebase/auth';
+
 import { Button } from "@material-ui/core";
 import React from "react";
 import facebookIcon from "../assets/Facebook_icon_2013.svg";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { withRouter } from "react-router-dom";
 
 function ButtonFacebookSignIn(props) {

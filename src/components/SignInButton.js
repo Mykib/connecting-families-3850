@@ -1,4 +1,5 @@
 import "./SignInButton.scss";
+import 'firebase/auth';
 
 import * as yup from "yup";
 
@@ -16,7 +17,7 @@ import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import IconButton from "./IconButton";
 import SignUpDialog from "./SignUpDialog";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useFormik } from "formik";
 import { withRouter } from "react-router-dom";
 

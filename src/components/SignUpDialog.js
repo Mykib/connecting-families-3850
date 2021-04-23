@@ -1,4 +1,5 @@
 import "./SignUpDialog.scss";
+import 'firebase/auth';
 
 import * as yup from "yup";
 
@@ -15,7 +16,7 @@ import React, { useState } from "react";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import IconButton from "./IconButton";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import { useFormik } from "formik";
 import { withRouter } from "react-router-dom";
 

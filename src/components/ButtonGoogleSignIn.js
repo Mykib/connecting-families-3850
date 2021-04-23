@@ -1,6 +1,8 @@
+import 'firebase/auth';
+
 import { Button } from "@material-ui/core";
 import React from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 import googleIcon from "../assets/Google__G__Logo.svg.png";
 import { withRouter } from "react-router-dom";
 

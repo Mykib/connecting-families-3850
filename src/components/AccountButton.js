@@ -1,9 +1,10 @@
 import "./AccountButton.scss";
+import 'firebase/auth';
 
 import { Avatar, Button } from "@material-ui/core";
 
 import React from "react";
-import firebase from "firebase";
+import firebase from "firebase/app";
 
 function AccountButton(props) {
   const user = firebase.auth().currentUser;
