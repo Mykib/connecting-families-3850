@@ -7,8 +7,10 @@ import { Squash as Hamburger } from "hamburger-react";
 import SignInButton from "./SignInButton";
 import aaLogo from "../assets/activities-australia-logo-vector.svg";
 import leafIcon from "../assets/connecting-families-wired-logo.svg";
+import { useHistory } from "react-router-dom";
 
 function NavBar(props) {
+  const history = useHistory();
   const [menuOpen, setMenuOpen] = useState(false);
   const [navItems, setNavItems] = useState([
     "programs",
@@ -39,7 +41,7 @@ function NavBar(props) {
         </div>
       </div>
       <div className={`nav-content ${menuOpen ? "not-hidden" : "hidden"}`} onClick={handleClose}>
-        <div className="ca-home">
+        <div className="ca-home" onClick={() => history.push(`/home`)}>
           <img src={leafIcon} alt="leaf-logo" className="leaf-logo" />
           <div className="ca-text">
             <h1>Connecting Families</h1>Bringing families together
@@ -48,12 +50,12 @@ function NavBar(props) {
         <div className="nav-spacer"></div>
         <div className="nav-items">
           {navItems.map((item) => (
-            <Button variant="text" className="nav-button">
+            <Button variant="text" className="nav-button" key={item} onClick={() => history.push(`/${item}`)}>
               {item}
             </Button>
           ))}
         </div>
-        <div className="aa-link">
+        <div className="aa-link" onClick={() => history.push(`/activities-australia`)}>
           <img src={aaLogo} alt="aa-logo" />
         </div>
         <div className="account-button">

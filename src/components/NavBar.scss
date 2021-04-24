@@ -97,14 +97,14 @@
         color: white;
         background-color: #453f3c;
         position: absolute;
-        z-index: 9999;
+        z-index: 1298;
     }
     .nav-mobile {
         @include flex-children();
         display: flex;
         flex-grow: 0;
         justify-content: center;
-        z-index: 9999;
+        z-index: 1298;
         background-color: #453f3c;
         position: absolute;
         .leaf-logo {
@@ -112,24 +112,24 @@
             width: 2.5rem;
             padding-right: 0.2em;
             filter: invert(1);
-            z-index: 9999;
+            z-index: 1298;
         }
         h1 {
             font-size: large;
             font-weight: inherit;
             margin: inherit;
             padding: inherit;
-            z-index: 9999;
+            z-index: 1298;
         }
         .ca-text {
             font-size: small;
-            z-index: 9999;
+            z-index: 1298;
         }
         .hamburger {
             position: absolute;
             left: 0em;
             top: 0em;
-            z-index: 99999;
+            z-index: 1299;
             transition: ease-in;
             &:hover {
                 transform: scale(1.1);

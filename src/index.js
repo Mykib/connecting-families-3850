@@ -16,9 +16,15 @@ ReactDOM.render(
     <AuthProvider>
       <ThemeProvider theme={theme}>
         <Router>
-          <NavBar/>
+          <NavBar />
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/home" component={Home} />
+            <Route path="/programs" component={Home} />
+            <Route path="/about" component={Home} />
+            <Route path="/ndis" component={Home} />
+            <Route path="/contact" component={Home} />
+            <Route path="/activities-australia" component={Home} />
           </Switch>
         </Router>
       </ThemeProvider>
