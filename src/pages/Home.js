@@ -7,9 +7,6 @@ function Home() {
     <div className="home">
       <div className="home-header">
         <RotatingLogo />
-        <p>
-          <code>Coming Soon!</code>
-        </p>
       </div>
     </div>
   );

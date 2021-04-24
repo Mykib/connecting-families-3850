@@ -21,11 +21,12 @@
     @include flex-children();
     display: flex;
     flex-grow: 0;
+    cursor: pointer;
     .leaf-logo {
         height: 2.5rem;
         width: 2.5rem;
-        filter: invert(1);
         padding-right: 0.2em;
+        filter: invert(1);
     }
     h1 {
         font-size: large;
@@ -36,6 +37,12 @@
     .ca-text {
         font-size: small;
     }
+    &:hover {
+        .leaf-logo {
+            filter: invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg) brightness(83%) contrast(92%);
+        }
+        color: #a4cd5d;
+    }
 }
 .nav-spacer {
     flex-grow: 1;
@@ -44,17 +51,28 @@
     @include flex-children();
     flex-grow: 0;
 }
+.nav-button:hover {
+    color: #a4cd5d;
+}
 .aa-link {
     @include flex-children();
     flex-grow: 0;
+    cursor: pointer;
     img {
         height: 2.2em;
+        &:hover {
+            filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
+                brightness(83%) contrast(92%);
+        }
     }
 }
 .account-button {
     @include flex-children();
     flex-grow: 0;
     padding-right: 1em;
+    Button:hover {
+        color: #a4cd5d;
+    }
 }
 
 @media only screen and (max-width: 750px) {
@@ -64,28 +82,29 @@
         // border-width: 1px;
         // border-style: solid;
     }
-    
+
     .nav-bar {
         height: 3rem;
         width: 100vw;
         background-color: #453f3c;
         box-shadow: 0px 3px 5px grey;
-    
+
         display: flex;
         align-items: center;
         justify-content: center;
-        color: green;
+        color: white;
         padding: 0.5em;
     }
     .ca-home {
         @include flex-children();
         display: flex;
         flex-grow: 0;
+        cursor: pointer;
         .leaf-logo {
             height: 2.5rem;
             width: 2.5rem;
-            filter: invert(1);
             padding-right: 0.2em;
+            filter: invert(1);
         }
         h1 {
             font-size: large;
@@ -96,6 +115,12 @@
         .ca-text {
             font-size: small;
         }
+        &:hover {
+            .leaf-logo {
+                filter: invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg) brightness(83%) contrast(92%);
+            }
+            color: #a4cd5d;
+        }
     }
     .nav-spacer {
         flex-grow: 1;
@@ -104,16 +129,27 @@
         @include flex-children();
         flex-grow: 0;
     }
+    .nav-button:hover {
+        color: #a4cd5d;
+    }
     .aa-link {
         @include flex-children();
         flex-grow: 0;
+        cursor: pointer;
         img {
             height: 2.2em;
+            &:hover {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
+                    brightness(83%) contrast(92%);
+            }
         }
     }
     .account-button {
         @include flex-children();
         flex-grow: 0;
         padding-right: 1em;
+        Button:hover {
+            color: #a4cd5d;
+        }
     }
 }

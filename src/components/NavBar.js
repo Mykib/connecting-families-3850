@@ -19,8 +19,10 @@ function NavBar(props) {
       </div>
       <div className="nav-spacer"></div>
       <div className="nav-items">
-        {navItems.map(item => (
-            <Button variant="text">{item}</Button>
+        {navItems.map((item) => (
+          <Button variant="text" className="nav-button">
+            {item}
+          </Button>
         ))}
       </div>
       <div className="aa-link">
