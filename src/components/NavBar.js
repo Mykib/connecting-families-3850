@@ -17,6 +17,10 @@ function NavBar(props) {
     "contact",
   ]);
 
+  const handleClose = () => {
+    if (menuOpen) setMenuOpen(false)
+  }
+
   useEffect(() => {
     menuOpen
       ? setNavItems(["home", "programs", "about", "ndis", "contact"])
@@ -34,7 +38,7 @@ function NavBar(props) {
           <h1>Connecting Families</h1>Bringing families together
         </div>
       </div>
-      <div className={`nav-content ${menuOpen ? "not-hidden" : "hidden"}`}>
+      <div className={`nav-content ${menuOpen ? "not-hidden" : "hidden"}`} onClick={handleClose}>
         <div className="ca-home">
           <img src={leafIcon} alt="leaf-logo" className="leaf-logo" />
           <div className="ca-text">

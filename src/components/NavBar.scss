@@ -184,6 +184,7 @@
     .aa-link {
         @include flex-children();
         text-align: center;
+        cursor: pointer;
         img {
             height: 2.2em;
             &:hover {
