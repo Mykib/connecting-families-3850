@@ -24,7 +24,8 @@
         align-items: center;
         justify-content: center;
         color: white;
-        padding: 0.5em;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
     .ca-home {
         @include flex-children();
@@ -88,7 +89,6 @@
 @media only screen and (max-width: 750px) {
     @mixin flex-children {
         width: 100vw;
-        padding: 0.2em;
         // border-color: ivory;
         // border-width: 1px;
         // border-style: solid;
@@ -100,11 +100,14 @@
         z-index: 1298;
     }
     .nav-mobile {
-        @include flex-children();
+        width: 100vw;
         display: flex;
         flex-grow: 0;
         justify-content: center;
         z-index: 1298;
+        height: 3rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
         background-color: #453f3c;
         position: absolute;
         .leaf-logo {
@@ -127,8 +130,8 @@
         }
         .hamburger {
             position: absolute;
-            left: 0em;
-            top: 0em;
+            left: 0.5em;
+            top: 0.5em;
             z-index: 1299;
             transition: ease-in;
             &:hover {
@@ -139,15 +142,17 @@
 
     .nav-content {
         width: 100vw;
-        margin-top: 2em;
+        margin-top: 3em;
         background-color: #453f3c;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         color: white;
-        padding: 0.5em;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
         position: absolute;
+        box-shadow: 0px 3px 5px grey;
     }
     .hidden {
         transition: 0.5s;
@@ -171,7 +176,8 @@
         align-items: center;
         justify-content: center;
         color: white;
-        padding: 0.5em;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
     }
     .nav-button {
         width: 100%;
