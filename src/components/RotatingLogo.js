@@ -1,9 +1,10 @@
+import "./RotatingLogo.scss";
+
 import React from "react";
-import "./RotatingLogo.css";
 import leafBlue from "../assets/cf-leaf-blue.svg";
+import leafGreen from "../assets/cf-leaf-green.svg";
 import leafOrange from "../assets/cf-leaf-orange.svg";
 import leafPurple from "../assets/cf-leaf-purp.svg";
-import leafGreen from "../assets/cf-leaf-green.svg";
 
 function RotatingLogo(props) {
   return (

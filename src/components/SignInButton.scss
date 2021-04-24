@@ -1,0 +1,24 @@
+.icon-button {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
+.dialog-content {
+    text-align: center;
+}
+
+.dialog-card {
+    margin: auto;
+    width: 24rem;
+}
+
+.error-button {
+    .MuiButton-label {
+        color: red;
+    }
+}
+
+.neg-margin {
+    margin-top: -1em;
+}
