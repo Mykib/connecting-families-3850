@@ -1,89 +1,20 @@
-@mixin flex-children {
-    padding: 0.2em;
-    // border-color: ivory;
-    // border-width: 1px;
-    // border-style: solid;
-}
-
-.nav-bar {
-    height: 3rem;
-    width: 100vw;
-    background-color: #453f3c;
-    box-shadow: 0px 3px 5px grey;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    padding: 0.5em;
-}
-.ca-home {
-    @include flex-children();
-    display: flex;
-    flex-grow: 0;
-    cursor: pointer;
-    .leaf-logo {
-        height: 2.5rem;
-        width: 2.5rem;
-        padding-right: 0.2em;
-        filter: invert(1);
-    }
-    h1 {
-        font-size: large;
-        font-weight: inherit;
-        margin: inherit;
-        padding: inherit;
-    }
-    .ca-text {
-        font-size: small;
-    }
-    &:hover {
-        .leaf-logo {
-            filter: invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg) brightness(83%) contrast(92%);
-        }
-        color: #a4cd5d;
-    }
-}
-.nav-spacer {
-    flex-grow: 1;
-}
-.nav-items {
-    @include flex-children();
-    flex-grow: 0;
-}
-.nav-button:hover {
-    color: #a4cd5d;
-}
-.aa-link {
-    @include flex-children();
-    flex-grow: 0;
-    cursor: pointer;
-    img {
-        height: 2.2em;
-        &:hover {
-            filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
-                brightness(83%) contrast(92%);
-        }
-    }
-}
-.account-button {
-    @include flex-children();
-    flex-grow: 0;
-    padding-right: 1em;
-    Button:hover {
-        color: #a4cd5d;
-    }
-}
-
-@media only screen and (max-width: 750px) {
+@media only screen and (min-width: 750px) {
     @mixin flex-children {
         padding: 0.2em;
         // border-color: ivory;
         // border-width: 1px;
         // border-style: solid;
     }
+    .nav-mobile {
+        display: none;
+    }
 
     .nav-bar {
+        padding: 0;
+        position: absolute;
+    }
+
+    .nav-content {
         height: 3rem;
         width: 100vw;
         background-color: #453f3c;
@@ -148,6 +79,122 @@
         @include flex-children();
         flex-grow: 0;
         padding-right: 1em;
+        Button:hover {
+            color: #a4cd5d;
+        }
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    @mixin flex-children {
+        width: 100vw;
+        padding: 0.2em;
+        // border-color: ivory;
+        // border-width: 1px;
+        // border-style: solid;
+    }
+    .nav-bar {
+        color: white;
+        background-color: #453f3c;
+        position: absolute;
+        z-index: 9999;
+    }
+    .nav-mobile {
+        @include flex-children();
+        display: flex;
+        flex-grow: 0;
+        justify-content: center;
+        z-index: 9999;
+        background-color: #453f3c;
+        position: absolute;
+        .leaf-logo {
+            height: 2.5rem;
+            width: 2.5rem;
+            padding-right: 0.2em;
+            filter: invert(1);
+            z-index: 9999;
+        }
+        h1 {
+            font-size: large;
+            font-weight: inherit;
+            margin: inherit;
+            padding: inherit;
+            z-index: 9999;
+        }
+        .ca-text {
+            font-size: small;
+            z-index: 9999;
+        }
+        .hamburger {
+            position: absolute;
+            left: 0em;
+            top: 0em;
+            z-index: 99999;
+            transition: ease-in;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    .nav-content {
+        width: 100vw;
+        margin-top: 2em;
+        background-color: #453f3c;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 0.5em;
+        position: absolute;
+    }
+    .hidden {
+        transition: 0.5s;
+        transform:translateY(-100vh);
+    }
+    .not-hidden {
+        transition: 0.5s;
+        transform:translateY(0px);
+    }
+    .ca-home {
+        display: none;
+    }
+    .nav-spacer {
+        @include flex-children();
+        display: none;
+    }
+    .nav-items {
+        @include flex-children();
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        padding: 0.5em;
+    }
+    .nav-button {
+        width: 100%;
+        text-align: center;
+    }
+    .nav-button:hover {
+        color: #a4cd5d;
+        background-color: inherit;
+    }
+    .aa-link {
+        @include flex-children();
+        text-align: center;
+        img {
+            height: 2.2em;
+            &:hover {
+                filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
+                    brightness(83%) contrast(92%);
+            }
+        }
+    }
+    .account-button {
+        text-align: center;
+        @include flex-children();
         Button:hover {
             color: #a4cd5d;
         }
