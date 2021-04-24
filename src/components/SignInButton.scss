@@ -1,17 +1,3 @@
-@mixin absolute-position {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-}
-
-#sign-out {
-    @include absolute-position();
-}
-
-#sign-in {
-    @include absolute-position();
-}
-
 .icon-button {
     position: absolute;
     top: 1rem;

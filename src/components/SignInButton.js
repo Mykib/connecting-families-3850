@@ -153,7 +153,7 @@ function SignInButton(props) {
           </DialogContent>
           <Button
             variant="text"
-            color="error"
+            color="default"
             size="small"
             fullWidth
             disabled

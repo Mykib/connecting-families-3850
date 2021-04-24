@@ -46,6 +46,11 @@ const theme = createMuiTheme({
         width: "0.9em",
         marginTop: "-0.1em",
       },
+      text: {
+        '&:hover': {
+          backgroundColor: 'transparent',
+        }
+      }
     },
   },
 });
