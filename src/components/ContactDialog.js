@@ -17,6 +17,7 @@ import {
 import React, { useState } from "react";
 
 import IconButton from "./IconButton";
+import firebase from 'firebase/app'
 import { useFormik } from "formik";
 import { withRouter } from "react-router-dom";
 
@@ -24,6 +25,7 @@ function ContactDialog(props) {
   const title = props.title;
   const [open, setOpen] = useState(true);
   const [helperText, setHelperText] = useState("");
+  const user = firebase.auth().currentUser;
 
   const validationSchema = yup.object({
     name: yup.string().required("Required"),
@@ -39,11 +41,24 @@ function ContactDialog(props) {
 
   const services = ["Contact Supervision", "Report Writing"];
 
+  const initInitialValues = () => {
+    if (user) {
+      initialName = user.displayName
+      initialEmail = user.email
+      if (user.phoneNumber) initialPhone = user.phoneNumber
+    }
+  }
+
+  let initialName = ''
+  let initialEmail = ''
+  let initialPhone = ''
+  initInitialValues();
+
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phone: "",
+      name: initialName,
+      email: initialEmail,
+      phone: initialPhone,
       subject: "",
       service: "",
       messageContent: "",
@@ -73,7 +88,8 @@ function ContactDialog(props) {
               autoFocus
               id="name"
               name="name"
-              label="Name"
+              label={user?"":"Name"}
+              disabled={user}
               type="name"
               autoComplete="off"
               fullWidth
@@ -85,9 +101,10 @@ function ContactDialog(props) {
             <TextField
               id="email"
               name="email"
-              label="Email Address"
+              label={user?"":"Email Address"}
               type="email"
               autoComplete="off"
+              disabled={user}
               fullWidth
               value={formik.values.email}
               onChange={formik.handleChange}
