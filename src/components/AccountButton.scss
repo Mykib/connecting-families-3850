@@ -1,7 +1,7 @@
 .account-button {
-    position: absolute;
-    top: 0.5em;
-    left: 0.5em;
+    padding: 0;
+    margin-left: 0.1em;
+    margin-right: 0.3em;
 }
 
 .account-button-pic-container {
@@ -10,8 +10,7 @@
     border-radius: 0.75em;
     border-style: solid;
     border-width: 1px;
-    margin-top: -0.45em;
-    margin-left: -0.1em;
+
 }
 
 .account-button-pic {
@@ -21,5 +20,4 @@
 }
 
 .account-button-text {
-    margin-left: 1em;
 }

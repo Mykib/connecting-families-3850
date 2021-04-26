@@ -1,16 +1,40 @@
 import "./AccountButton.scss";
-import 'firebase/auth';
+import "firebase/auth";
 
-import { Avatar, Button } from "@material-ui/core";
+import { Avatar, Button, Menu, MenuItem } from "@material-ui/core";
+import React, { useState } from "react";
 
-import React from "react";
 import firebase from "firebase/app";
+import { useHistory } from "react-router-dom";
 
 function AccountButton(props) {
+  const history = useHistory();
   const user = firebase.auth().currentUser;
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = (href) => {
+    setAnchorEl(null);
+    if (href) history.push(href)
+  };
 
   const getProfilePicUrl = () => {
     return user.photoURL;
+  };
+  
+  const signOut = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/");
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
 
   function addSizeToGoogleProfilePic(url) {
@@ -30,8 +54,9 @@ function AccountButton(props) {
     <div className="account-button">
       {user !== null && (
         <Button
+          onClick={handleClick}
           variant="text"
-          startIcon={
+          endIcon={
             <div className="account-button-pic-container">
               {user.photoURL && (
                 <img
@@ -49,6 +74,19 @@ function AccountButton(props) {
           <div className="account-button-text">{user.displayName}</div>
         </Button>
       )}
+      <Menu
+        className="account-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={anchorEl}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={() => handleClose('/MyAccount')}>My Account</MenuItem>
+        <MenuItem onClick={() => handleClose('/MyQueries')}>My Queries</MenuItem>
+        <MenuItem onClick={signOut}>
+          <Button onClick={signOut} variant="outlined">Sign-out</Button>
+        </MenuItem>
+      </Menu>
     </div>
   );
 }
