@@ -11,14 +11,17 @@ function AccountButton(props) {
   const history = useHistory();
   const user = firebase.auth().currentUser;
   const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+    setOpen(true)
   };
 
   const handleClose = (href) => {
     setAnchorEl(null);
     if (href) history.push(href)
+    setOpen(false)
   };
 
   const getProfilePicUrl = () => {
@@ -78,7 +81,7 @@ function AccountButton(props) {
         className="account-menu"
         anchorEl={anchorEl}
         keepMounted
-        open={anchorEl}
+        open={open}
         onClose={handleClose}
       >
         <MenuItem onClick={() => handleClose('/MyAccount')}>My Account</MenuItem>

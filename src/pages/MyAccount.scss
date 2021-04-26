@@ -1,0 +1,44 @@
+.MyAccount {
+    .rotating-logo {
+        position: fixed;
+        left: -10vw;
+        top: 30vh;
+        z-index: -999;
+    }
+    .leaf {
+        height: 30vw;
+        width: 30vw;
+        filter: drop-shadow(0 0 3em rgba(0, 0, 0, 0.671));
+        filter: blur(0.5em) opacity(0.9);
+    }
+
+    .rotating-logo {
+        animation: rotation infinite 30s linear;
+    }
+
+    padding-top: 8em;
+}
+
+.account-content {
+    margin: auto;
+    text-align: center;
+    h1 {
+        display: inline;
+    }
+    form {
+        padding: 1.5em
+    }
+    .single-row {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 0.4em;
+    }
+}
+
+.blur-background {
+    position: fixed;
+    min-width: 100vw;
+    min-height: 100vh;
+    z-index: -99;
+}

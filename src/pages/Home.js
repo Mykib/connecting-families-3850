@@ -1,6 +1,5 @@
 import "./Home.scss";
 
-import ContactDialog from "../components/ContactDialog";
 import RotatingLogo from "../components/RotatingLogo";
 
 function Home() {
