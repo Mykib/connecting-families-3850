@@ -1,4 +1,72 @@
 .Programs {
     padding-top: 4rem;
     width: 100vw;
+    max-width: 57rem;
+    margin: auto;
+
+    .rotating-logo {
+        position: fixed;
+        left: -10vw;
+        top: 30vh;
+        z-index: -999;
+    }
+    .leaf {
+        height: 40vw;
+        width: 40vw;
+        filter: drop-shadow(0 0 3em rgba(0, 0, 0, 0.671));
+        filter: blur(0.5em) opacity(0.5);
+    }
+
+    .rotating-logo {
+        animation: rotation infinite 50s linear;
+    }
+}
+.programs-title {
+    padding: 1rem;
+    font-size: 2em;
+    line-height: 2em;
+    text-align: center;
+}
+.programs-descriptiion {
+    padding: 1rem;
+    max-width: 40rem;
+    text-align: justify;
+    margin: auto;
+}
+.programs {
+    margin: auto;
+    text-align: center;
+}
+.program {
+    display: inline-block;
+    margin: auto;
+    width: 17rem;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    vertical-align: top;
+    background-color: white;
+    box-shadow: 0 0 3em rgba(0, 0, 0, 0.2);
+}
+.program-image {
+    width: 17rem;
+}
+
+.program-title {
+    width: 17rem;
+    font-size: 1.2em;
+    line-height: 2em;
+    text-align: start;
+}
+
+.program-description {
+    width: 17rem;
+    text-align: start;
+}
+
+.programs-learn-more {
+    font-size: 1.8em;
+    line-height: 4em;
+    border-top: #453F3C;
+    border-top-width: 2px;
+    border-top-style: solid;
 }
