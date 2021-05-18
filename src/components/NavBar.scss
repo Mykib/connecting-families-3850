@@ -1,3 +1,5 @@
+$scale-amount: scale(1.1);
+
 @media only screen and (min-width: 750px) {
     @mixin flex-children {
         padding: 0.2em;
@@ -12,13 +14,13 @@
     .nav-bar {
         padding: 0;
         position: absolute;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.247);
     }
 
     .nav-content {
         height: 3rem;
         width: 100vw;
-        background-color: #453f3c;
-        box-shadow: 0px 3px 5px grey;
+        background-image: linear-gradient(#377FC0, #379FC0);
 
         display: flex;
         align-items: center;
@@ -32,6 +34,7 @@
         display: flex;
         flex-grow: 0;
         cursor: pointer;
+        padding-left: 1em;
         .leaf-logo {
             height: 2.5rem;
             width: 2.5rem;
@@ -48,10 +51,7 @@
             font-size: small;
         }
         &:hover {
-            .leaf-logo {
-                filter: invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg) brightness(83%) contrast(92%);
-            }
-            color: #a4cd5d;
+            transform: $scale-amount;
         }
     }
     .nav-spacer {
@@ -62,7 +62,7 @@
         flex-grow: 0;
     }
     .nav-button:hover {
-        color: #a4cd5d;
+        transform: $scale-amount;
     }
     .aa-link {
         @include flex-children();
@@ -71,8 +71,7 @@
         img {
             height: 2.2em;
             &:hover {
-                filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
-                    brightness(83%) contrast(92%);
+                transform: $scale-amount;
             }
         }
         margin-right: 0.5em
@@ -82,9 +81,6 @@
         flex-grow: 0;
         margin-left: 1em;
         margin-right: 1em;
-        Button:hover {
-            color: #a4cd5d;
-        }
     }
 }
 
@@ -97,7 +93,7 @@
     }
     .nav-bar {
         color: white;
-        background-color: #453f3c;
+        background-image: linear-gradient(#377FC0, #379FC0);
         position: absolute;
         z-index: 1298;
     }
@@ -110,7 +106,8 @@
         height: 3rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
-        background-color: #453f3c;
+        background-image: linear-gradient(#377FC0, #379FC0);
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.247);
         position: absolute;
         .leaf-logo {
             height: 2.5rem;
@@ -145,7 +142,7 @@
     .nav-content {
         width: 100vw;
         margin-top: 3em;
-        background-color: #453f3c;
+        background-image: linear-gradient(#377FC0, #379FC0);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -154,7 +151,7 @@
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
         position: absolute;
-        box-shadow: 0px 3px 5px grey;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.247);
     }
     .hidden {
         transition: 0.5s;
@@ -186,8 +183,7 @@
         text-align: center;
     }
     .nav-button:hover {
-        color: #a4cd5d;
-        background-color: inherit;
+        transform: $scale-amount;
     }
     .aa-link {
         @include flex-children();
@@ -196,16 +192,12 @@
         img {
             height: 2.2em;
             &:hover {
-                filter: brightness(0) saturate(100%) invert(100%) sepia(63%) saturate(1624%) hue-rotate(22deg)
-                    brightness(83%) contrast(92%);
+                transform: $scale-amount;
             }
         }
     }
     .account-button {
         text-align: center;
         @include flex-children();
-        Button:hover {
-            color: #a4cd5d;
-        }
     }
 }
