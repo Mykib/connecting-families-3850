@@ -1,4 +1,5 @@
 .icon-button-container {
+    position: absolute;
     height: 1.5em;
     width: 1.5em;
     border-radius: 50%;
@@ -19,5 +20,6 @@
     margin-bottom: -0.15em;
     margin-left: 0.35em;
     border-width: 3px;
+    color: #5aa9e6;
     filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.1));
 }

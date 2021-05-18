@@ -4,24 +4,27 @@ const theme = createMuiTheme({
   palette: {
     type: "dark",
     primary: {
-      main: "#5AA9E6",
+      main: "#fffffff",
     },
     secondary: {
-      main: "#9FCE4E",
+      main: "#2E6EB1",
     },
   },
   overrides: {
     MuiDialogTitle: {
       root: {
         margin: 0,
-        padding: "0px 24px",
+        padding: "0.5em 24px",
         flex: "1",
         textAlign: "center",
+        backgroundColor: 'white',
+        color: '#5AA9E6',
       },
     },
     MuiDialog: {
       paperWidthSm: {
         maxWidth: "350px",
+        backgroundImage: "linear-gradient(#377FC0, #379FC0)",
       }
     },
     MuiAvatar: {
@@ -41,6 +44,12 @@ const theme = createMuiTheme({
         height: "0.9em",
         width: "0.9em",
         marginTop: "-0.1em",
+      },
+      containedPrimary: {
+        color: "#2E6EB1",
+        '&:hover': {
+          backgroundColor: '#bce2ff',
+        }
       },
       text: {
         '&:hover': {
