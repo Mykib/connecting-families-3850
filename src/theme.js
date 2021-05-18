@@ -9,10 +9,6 @@ const theme = createMuiTheme({
     secondary: {
       main: "#9FCE4E",
     },
-    background: {
-      paper: "#453F3C",
-      default: "453F3C",
-    },
   },
   overrides: {
     MuiDialogTitle: {

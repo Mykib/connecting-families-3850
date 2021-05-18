@@ -75,11 +75,13 @@
                     brightness(83%) contrast(92%);
             }
         }
+        margin-right: 0.5em
     }
     .account-button {
         @include flex-children();
         flex-grow: 0;
-        padding-right: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
         Button:hover {
             color: #a4cd5d;
         }

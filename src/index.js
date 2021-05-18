@@ -7,6 +7,8 @@ import ActivitiesAustralia from "./pages/ActivitiesAustralia";
 import { AuthProvider } from "./auth";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
+import MyAccount from "./pages/MyAccount";
+import MyQueries from "./pages/MyQueries";
 import NDIS from "./pages/NDIS";
 import NavBar from "./components/NavBar";
 import Programs from "./pages/Programs";
@@ -27,6 +29,8 @@ ReactDOM.render(
             <Route exact path="/home" component={Home} />
             <Route path="/programs" component={Programs} />
             <Route path="/about" component={About} />
+            <Route path="/MyQueries" component={MyQueries} />
+            <Route path="/MyAccount" component={MyAccount} />
             <Route path="/ndis" component={NDIS} />
             <Route path="/contact" component={Contact} />
             <Route path="/activities-australia" component={ActivitiesAustralia} />

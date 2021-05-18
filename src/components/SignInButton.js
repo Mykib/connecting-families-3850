@@ -13,6 +13,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 
+import AccountButton from "./AccountButton";
 import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
 import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
 import IconButton from "./IconButton";
@@ -26,18 +27,6 @@ function SignInButton(props) {
   const [signUpOpen, setSignUpOpen] = useState(false);
   const [helperText, setHelperText] = useState("");
   const user = firebase.auth().currentUser;
-
-  const signOut = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        props.history.push("/");
-      })
-      .catch((e) => {
-        console.log(e.message);
-      });
-  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -99,14 +88,7 @@ function SignInButton(props) {
         </Button>
       )}
       {user !== null && (
-        <Button
-          variant="outlined"
-          color="default"
-          id="sign-in"
-          onClick={signOut}
-        >
-          Sign-Out
-        </Button>
+        <AccountButton />
       )}
       <Dialog
         open={open}
