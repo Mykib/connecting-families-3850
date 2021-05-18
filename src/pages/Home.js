@@ -9,8 +9,6 @@ function Home() {
       <div className="home-header" />
       <div className="home-content">
         <RotatingLogo />
-        <br />
-        Coming soon...
         <div className="sign-up-button" >
           <SignUpButton />
         </div>
