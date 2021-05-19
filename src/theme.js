@@ -59,7 +59,7 @@ const theme = createMuiTheme({
     },
     MuiCard: {
       root: {
-        backgroundImage: "linear-gradient(#377FC0, #379FC0)",
+        backgroundColor: "#4195D0",
       }
     }
   },
