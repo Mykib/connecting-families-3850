@@ -6,13 +6,20 @@ import React, { useEffect, useState } from "react";
 import AccountButton from "./AccountButton";
 import { Button } from "@material-ui/core";
 import SignInDialog from "./SignInDialog";
-import SignUpDialog from "./SignUpDialog";
 import firebase from "firebase/app";
 import { withRouter } from "react-router-dom";
 
 function SignInButton(props) {
   const [signInOpen, setSignInOpen] = useState(false);
-  let user = firebase.auth().currentUser;
+  const [user, setUser] = useState(() => {
+    const user = firebase.auth().currentUser;
+    return user;
+  });
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser);
+    });
+  }, []);
 
   const openSignInDialog = () => {
     setSignInOpen(true);
@@ -21,10 +28,6 @@ function SignInButton(props) {
   const setSetSignInOpen = (state) => {
     setSignInOpen(state);
   };
-
-  useEffect(() => {
-    user = firebase.auth().currentUser;
-  }, [])
 
   return (
     <div id="user-container">

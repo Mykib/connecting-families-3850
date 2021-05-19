@@ -1,6 +1,6 @@
 import "./Home.scss";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ContactButton from "../components/ContactButton";
 import RotatingLogo from "../components/RotatingLogo";
@@ -10,7 +10,16 @@ import firebase from "firebase/app";
 
 function Home() {
   const [signInOpen, setSignInOpen] = useState(false);
-  const user = firebase.auth().currentUser;
+  const [user, setUser] = useState(() => {
+    const user = firebase.auth().currentUser;
+    return user;
+  });
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser);
+    });
+  }, []);
+
   const setSetSignInOpen = (state) => {
     setSignInOpen(state);
   };
