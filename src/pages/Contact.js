@@ -1,13 +1,13 @@
 import './Contact.scss'
 
-import ContactDialog from '../components/ContactDialog'
+import ContactButton from '../components/ContactButton'
 import React from 'react';
 
 function Contact(props) {
     return (
         <div className="Contact">
             Contact
-            <ContactDialog title="Contact Us"/>
+            <ContactButton />
         </div>
     );
 }

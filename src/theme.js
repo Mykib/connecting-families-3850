@@ -53,7 +53,7 @@ const theme = createMuiTheme({
         }
       },
       containedSecondary: {
-        color: "#2E6EB1",
+        color: "#4195D0",
         backgroundColor: 'white',
         '&:hover': {
           backgroundColor: '#bce2ff',

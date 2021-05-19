@@ -24,7 +24,6 @@ import { withRouter } from "react-router-dom";
 
 function ContactDialog(props) {
   const title = props.title;
-  const [open, setOpen] = useState(true);
   const [helperText, setHelperText] = useState("");
   const [submitSucess, setSubmitSuccess] = useState(false);
   const user = firebase.auth().currentUser;
@@ -84,13 +83,13 @@ function ContactDialog(props) {
   });
 
   const handleClickClose = () => {
-    setOpen(false);
+    props.setOpen(false);
   };
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={props.open}
         onClose={handleClickClose}
         aria-labelledby="form-dialog-title"
       >

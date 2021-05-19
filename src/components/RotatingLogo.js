@@ -15,6 +15,7 @@ import leafBlue from "../assets/cf-leaf-blue.svg";
 import leafGreen from "../assets/cf-leaf-green.svg";
 import leafOrange from "../assets/cf-leaf-orange.svg";
 import leafPurple from "../assets/cf-leaf-purp.svg";
+import { useHistory } from "react-router-dom";
 
 function RotatingLogo(props) {
   const [rotationAngle, setRotationAngle] = useState(45);
@@ -22,6 +23,7 @@ function RotatingLogo(props) {
   const [damping, setDamping] = useState(10);
   const [looping, setLooping] = useState(true);
   const [currentCard, setCurrentCard] = useState("");
+  const history = useHistory();
 
   const handleLeafClick = (card, angle) => {
     if (looping) stopLooping();
@@ -34,6 +36,10 @@ function RotatingLogo(props) {
     setStiffness(30);
     setDamping(10);
   };
+
+  const navigateTo = (component) => {
+    history.push(`/${component}`)
+  }
 
   return (
     <div className="RotatingLogo">
@@ -113,7 +119,7 @@ function RotatingLogo(props) {
               answer any questions you may have.
             </Typography>
           </CardContent>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" color="secondary" onClick={() => navigateTo("programs")}>
             Click here to learn more!
           </Button>
         </Card>
@@ -132,7 +138,7 @@ function RotatingLogo(props) {
               children to have contact with their family members.
             </Typography>
           </CardContent>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" color="secondary" onClick={() => navigateTo("about")}>
             Learn about our services!
           </Button>
         </Card>
@@ -149,7 +155,7 @@ function RotatingLogo(props) {
               numerious services as a registered NDIS provider.
             </Typography>
           </CardContent>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" color="secondary" onClick={() => navigateTo("ndis")}>
             Learn about our services!
           </Button>
         </Card>
@@ -170,7 +176,7 @@ function RotatingLogo(props) {
               them leave our camps fitter, stronger, happier and more confident.
             </Typography>
           </CardContent>
-          <Button size="small" variant="contained">
+          <Button size="small" variant="contained" color="secondary" onClick={() => navigateTo("activities-australia")}>
             See Activities Australia!
           </Button>
         </Card>

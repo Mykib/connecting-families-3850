@@ -153,7 +153,7 @@ function SignUpDialog(props) {
                 formik.touched.confirmation && formik.errors.confirmation
               }
             />
-            <Button onClick={props.goBack} color="primary" size="small">
+            <Button onClick={props.goSignIn} color="primary" size="small">
               have an account? Login Here
             </Button>
             <ButtonGoogleSignIn handleClickClose={handleClickClose} />

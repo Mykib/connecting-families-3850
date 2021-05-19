@@ -126,7 +126,7 @@ function SignInDialog(props) {
         </form>
       </Dialog>
       {signUpOpen && (
-        <SignUpDialog props={setSignUpOpen} goBack={backFromSignUp} />
+        <SignUpDialog setOpen={signUpOpen} goBack={backFromSignUp} goSignIn={backFromSignUp}/>
       )}
     </div>
   );
