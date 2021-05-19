@@ -226,7 +226,7 @@ function ContactDialog(props) {
               {helperText}
             </Button>
             <DialogActions className="neg-margin">
-              <Button variant="contained" color="primary" type="submit">
+              <Button variant="contained" color="secondary" type="submit">
                 Submit
               </Button>
             </DialogActions>

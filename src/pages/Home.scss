@@ -12,30 +12,54 @@
     z-index: -1;
 }
 
-.home-content {
-    display: flex;
-    flex-direction: column;
-    padding-top: 15rem;
-    align-items: center;
-    font-size: calc(10px + 2vmin);
-    color: #2E6EB1;
-    min-height: 100vh;
-    .sign-up-button {
-        line-height: 1.75em;
-        text-align: end;
-        position: fixed;
-        bottom: 3rem;
-        right: 0.5rem;
+@media only screen and (min-width: 750px) {
+    .home-content {
+        display: flex;
+        flex-direction: column;
+        padding-top: 20vh;
+        align-items: center;
+        font-size: calc(10px + 2vmin);
+        color: #2e6eb1;
+        min-height: 100vh;
+        .sign-up-button {
+            line-height: 1.75em;
+            text-align: end;
+            position: absolute;
+            bottom: 3rem;
+            right: 0.5rem;
+        }
+        .call-text {
+            line-height: 1.75em;
+            mix-blend-mode:multiply;
+            text-align: end;
+            position: absolute;
+            bottom: 0.5rem;
+            right: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 400;
+            filter: drop-shadow(0.05em 0.05em #ffffff);
+        }
     }
-    .call-text{
-        line-height: 1.75em;
-        mix-blend-mode:color-burn;
-        text-align: end;
-        position: fixed;
-        bottom: 0.5rem;
-        right: 0.5rem;
-        font-size: 1.5rem;
-        font-weight: 400;
-        filter: drop-shadow(.05em .05em #3780c03b);
+}
+
+@media only screen and (max-width: 750px) {
+    .home-content {
+        padding-top: 8em;
+        padding-bottom: 2em;
+        text-align: center;
+        overflow: hidden;
+        .sign-up-button {
+            z-index: -1;
+            width: 100vw;
+            position: absolute;
+            bottom: 2em;
+        }
+        .call-text {
+            z-index: -1;
+            width: 100vw;
+            position: absolute;
+            bottom: 0.5em;
+            mix-blend-mode: hard-light;
+        }
     }
 }

@@ -170,7 +170,7 @@ function SignUpDialog(props) {
             {helperText}
           </Button>
           <DialogActions className="neg-margin">
-            <Button variant="contained" color="primary" type="submit">
+            <Button variant="contained" color="secondary" type="submit">
               Sign Up
             </Button>
           </DialogActions>

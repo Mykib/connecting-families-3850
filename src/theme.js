@@ -46,7 +46,15 @@ const theme = createMuiTheme({
         marginTop: "-0.1em",
       },
       containedPrimary: {
+        backgroundColor: "#4195D0",
+        color: 'white',
+        '&:hover': {
+          backgroundColor: '#81BAE6',
+        }
+      },
+      containedSecondary: {
         color: "#2E6EB1",
+        backgroundColor: 'white',
         '&:hover': {
           backgroundColor: '#bce2ff',
         }

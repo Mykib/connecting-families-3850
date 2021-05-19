@@ -10,7 +10,7 @@ function Home() {
       <div className="home-content">
         <RotatingLogo />
         <div className="sign-up-button" >
-          <SignUpButton />
+          <SignUpButton color="primary"/>
         </div>
         <div className="call-text">or call 02 8036 6121</div>
       </div>
