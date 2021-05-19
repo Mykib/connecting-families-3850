@@ -1,78 +1,26 @@
 import "./SignInButton.scss";
-import 'firebase/auth';
+import "firebase/auth";
 
-import * as yup from "yup";
-
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  TextField,
-} from "@material-ui/core";
 import React, { useState } from "react";
 
 import AccountButton from "./AccountButton";
-import ButtonFacebookSignIn from "./ButtonFacebookSignIn";
-import ButtonGoogleSignIn from "./ButtonGoogleSignIn";
-import IconButton from "./IconButton";
+import { Button } from "@material-ui/core";
+import SignInDialog from "./SignInDialog";
 import SignUpDialog from "./SignUpDialog";
 import firebase from "firebase/app";
-import { useFormik } from "formik";
 import { withRouter } from "react-router-dom";
 
 function SignInButton(props) {
-  const [open, setOpen] = useState(false);
-  const [signUpOpen, setSignUpOpen] = useState(false);
-  const [helperText, setHelperText] = useState("");
+  const [signInOpen, setSignInOpen] = useState(false);
   const user = firebase.auth().currentUser;
 
-  const handleClickOpen = () => {
-    setOpen(true);
+  const openSignInDialog = () => {
+    setSignInOpen(true);
   };
 
-  const handleClickClose = () => {
-    setOpen(false);
+  const setSetSignInOpen = (state) => {
+    setSignInOpen(state);
   };
-
-  const handleOpenSignUp = () => {
-    setOpen(false);
-    setSignUpOpen(true);
-  };
-
-  const backFromSignUp = () => {
-    setSignUpOpen(false);
-    setOpen(true);
-  };
-
-  const validationSchema = yup.object({
-    email: yup.string().email("Please enter valid email").required("Required"),
-    password: yup
-      .string()
-      .min(8, ({ min }) => `Must be at least ${min} characters`)
-      .required("Required"),
-  });
-
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    validationSchema: validationSchema,
-    onSubmit: (values) => {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(values.email, values.password)
-        .then(() => {
-          handleClickClose();
-          props.history.push("/");
-        })
-        .catch((e) => {
-          setHelperText(e.message);
-        });
-    },
-  });
 
   return (
     <div id="user-container">
@@ -82,77 +30,13 @@ function SignInButton(props) {
           variant="outlined"
           color="default"
           id="sign-in"
-          onClick={handleClickOpen}
+          onClick={openSignInDialog}
         >
           Sign-In
         </Button>
       )}
-      {user !== null && (
-        <AccountButton />
-      )}
-      <Dialog
-        open={open}
-        onClose={handleClickClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <form onSubmit={formik.handleSubmit}>
-          <IconButton onClick={handleClickClose} />
-          <DialogTitle>Sign In</DialogTitle>
-          <DialogContent className="dialog-content">
-            <TextField
-              id="email"
-              name="email"
-              label="Email Address"
-              type="email"
-              autoComplete="off"
-              fullWidth
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField
-              id="password"
-              name="password"
-              label="Password"
-              type="password"
-              autoComplete="off"
-              fullWidth
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-            <Button onClick={handleOpenSignUp} color="primary" size="small">
-              Need an account? Click Here
-            </Button>
-            <br />
-            <br />
-            <ButtonGoogleSignIn handleClickClose={handleClickClose} />
-            <br />
-            <br />
-            <ButtonFacebookSignIn handleClickClose={handleClickClose} />
-          </DialogContent>
-          <Button
-            variant="text"
-            color="default"
-            size="small"
-            fullWidth
-            disabled
-            className="error-button"
-          >
-            {helperText}
-          </Button>
-          <DialogActions className="neg-margin">
-            <Button variant="contained" color="secondary" type="submit">
-              Sign In
-            </Button>
-          </DialogActions>
-        </form>
-      </Dialog>
-      {signUpOpen && (
-        <SignUpDialog setOpen={setSignUpOpen} goBack={backFromSignUp} />
-      )}
+      {!user && <AccountButton />}
+      {!user && <SignInDialog open={signInOpen} setOpen={setSetSignInOpen}/>}
     </div>
   );
 }
